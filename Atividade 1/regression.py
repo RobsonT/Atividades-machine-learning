@@ -288,7 +288,7 @@ class Polynomial_regression():
         x_transformed = x
         
         for _ in range(2,self.degree + 1):
-            x = x * x
+            new_x = x_transformed[:, -1] * x
             x_transformed = np.c_[x_transformed, x]
 
         self.model = MLR()
