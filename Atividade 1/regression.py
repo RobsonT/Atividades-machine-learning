@@ -166,7 +166,7 @@ class MLRGD():
             x (array): sample data
             y (array): label data
         """
-        y_predicted = self.predict(x)
+        y_predicted = self.predict(x[:, 1:])
         error = y - y_predicted
 
         features_size = x.shape[1]
@@ -175,7 +175,7 @@ class MLRGD():
             self.b[i] = self.b[i] + (self.learning_rate * np.mean(error * x[:, i]))
             
         if self.save_epoch_mse:
-            mse = np.mean((y - self.predict(x)) ** 2)
+            mse = np.mean((y - self.predict(x[:, 1:])) ** 2)
             self.mse = np.append(self.mse, mse)
     
     def fit(self, x, y):
@@ -239,13 +239,13 @@ class MLRSGD():
             x (array): sample data
             y (array): label data
         """
-        y_predicted = self.predict(x)
+        y_predicted = self.predict(x[:, 1:])
         error = y - y_predicted
 
         self.b = self.b + (self.learning_rate * (error @ x))
         
         if self.save_epoch_mse:
-            mse = np.mean((y - self.predict(x)) ** 2)
+            mse = np.mean((y - self.predict(x[:, 1:])) ** 2)
             self.mse = np.append(self.mse, mse)
     
     def fit(self, x, y):
