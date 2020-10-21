@@ -1,5 +1,4 @@
 import numpy as np
-from plots import Plots
 
 class Metrics():
     def __init__(self):
@@ -57,7 +56,6 @@ class Metrics():
             print("___________________________Iteração {}___________________________".format(i+1))
             print('Acurácia para dados de treino: {}'.format(train_accuracy))
             print('Acurácia para dados de teste: {}'.format(test_accuracy))
-            Plots().plot_confusion_matrix_(X_test, y_test, classifier)
         print('\n')
         print('Acurácia geral de treino: {}'.format(train_accuracy_list.mean()))
         print('Acurácia geral de teste: {}'.format(test_accuracy_list.mean()))
